@@ -1,0 +1,22 @@
+def read_zip(data: str, password: str, filename: str) -> bytes:
+    with io.BytesIO() as memo_file:
+        memo_file.write(data)
+        with pyzipper.AESZipFile(memo_file, 'r', compression=pyzipper.ZIP_LZMA,
+                            encryption=pyzipper.WZ_AES) as zf:
+            return zf.read(filename, password)
+
+def account_card_read_zip(data: str, password: str, filename: str) -> str:
+    return read_zip(data, password, filename).decode('utf-8')
+
+def create_zip(data: str, password: str, filename: str) -> bytes:
+    with tempfile.NamedTemporaryFile() as tmp_file:
+        with pyzipper.AESZipFile(tmp_file.name,
+                         'w',
+                         compression=pyzipper.ZIP_LZMA,
+                         encryption=pyzipper.WZ_AES) as zf:
+            zf.setpassword(password)
+            zf.writestr(filename, data)
+        tmp_file.seek(0)
+        return tmp_file.read()
+ACCOUNT_CARD_FILE_NAME = "account_card.csv"
+

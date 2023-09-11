@@ -1,0 +1,5 @@
+id,name,department,birth_month
+1,Zin Paing Oo,DataScience,March
+2,Wai Yan Kyaw,Backend,June
+3,Zin Mar,Frontend,January
+4,Soe Thiha,Rnd,Feburary
