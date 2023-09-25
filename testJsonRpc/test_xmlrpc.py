@@ -1,19 +1,25 @@
 url = "http://localhost:8016/"
 db = 'rd-demo'
 username = 'admin'
-password = 'b9ecd11827b9cff403250a323828dc0c127abf6e'
+password = 'b9ecd11827b9cff403250a323828dc0c127abf6e'   #api key got by user preference -account security
 
 import xmlrpc.client
+
 info = xmlrpc.client.ServerProxy('https://demo.odoo.com/start').start()
 url, db, username, password = info['host'], info['database'], info['user'], info['password']
 
+#get server-proxy for xml rpc
 common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
 version = common.version()
 print(version)
 
+#authenticate the user with database name, user login and the api key as password. 
+# The authenticate method returns the user id
 uid = common.authenticate(db, username, password, {})
 
+#access data from odoo or create data in odoo. 
 models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
+# execute_kw method of xmlrpc/2/object will help us to access the data
 res = models.execute_kw(db, uid, password, 'res.partner', 'check_access_rights', ['read'], {'raise_exception': False})
 print(res)
 
