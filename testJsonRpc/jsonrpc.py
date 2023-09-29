@@ -4,7 +4,7 @@ import urllib.request
 
 HOST = 'localhost'
 PORT = 8016
-DB = 'rd-demo'
+DB = 'rd_demo'
 USER = 'admin'
 PASS = 'admin'
 
@@ -47,3 +47,6 @@ print(url,uid)
 # #delete
 # patient= call(url, "object", "execute", DB, uid, PASS, 'hospital.patient', 'unlink', [11,12])
 # print("Test Deleted **********************",patient)
+
+user = call(url, "object", "execute", DB, uid, PASS, "res.users", "read", [2])
+print("Users info : ", user)

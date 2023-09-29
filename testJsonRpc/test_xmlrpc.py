@@ -1,7 +1,7 @@
 url = "http://localhost:8016/"
-db = 'rd-demo'
+db = 'rd_demo'
 username = 'admin'
-password = 'b9ecd11827b9cff403250a323828dc0c127abf6e'   #api key got by user preference -account security
+password = 'eecdec26689d65cc082b3b0cd3f71f02019373ac'   #api key got by user preference -account security
 
 import xmlrpc.client
 
